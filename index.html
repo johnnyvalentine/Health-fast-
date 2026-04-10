@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthFast — AI Health Assistant</title>
+  <meta name="description" content="AI-powered health assistant for symptom analysis and medical resource finder." />
+  <meta name="theme-color" content="#2563eb" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React 18 CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel for JSX transformation in-browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* Global resets for a clean medical aesthetic */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f8fafc;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    /* Tailwind line-clamp utility */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+  </style>
+
+  <script>
+    // Initialize window.storage if not available (in-memory fallback)
+    if (!window.storage) {
+      (function () {
+        const store = {};
+        window.storage = {
+          getItem: function (key) { return store[key] !== undefined ? store[key] : null; },
+          setItem: function (key, value) { store[key] = String(value); },
+          removeItem: function (key) { delete store[key]; },
+          clear: function () { Object.keys(store).forEach(function (k) { delete store[k]; }); }
+        };
+      })();
+    }
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="App.jsx"></script>
+</body>
+</html>
